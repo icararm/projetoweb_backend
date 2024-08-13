@@ -1,27 +1,15 @@
 package com.projetoweb_backend.projetoweb_backend_2.service;
 
-import com.projetoweb_backend.projetoweb_backend_2.dto.RequestUsuario;
-import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.projetoweb_backend.projetoweb_backend_2.entity.Usuario;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-@Table(name = "usuario")
-@Entity(name = "usuario")
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
 public class UsuarioService {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
 
-    private int id;
+    public List<Usuario> findAll(){return UsuarioIService.findAll();}
 
-    private String name;
-
-    public Usuario(RequestUsuario requestUsuario){
-        this.name = requestUsuario.name();
-    }
 }

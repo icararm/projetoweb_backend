@@ -1,30 +1,24 @@
 package com.projetoweb_backend.projetoweb_backend_2.controllers;
 
-import com.projetoweb_backend.projetoweb_backend_2.dto.RequestUsuario;
 import com.projetoweb_backend.projetoweb_backend_2.service.UsuarioIService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/usuario")
+@RequiredArgsConstructor
 public class UsuarioController {
 
-    @Autowired
-    private final UsuarioIService service
+    private final UsuarioIService service;
 
-    @GetMapping
-    public ResponseEntity getAllUsuario(){
-        var allUsuarios = repository.findAll();
-        return ResponseEntity.ok(allUsuarios);
+    @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity <?>findAll(){
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body();
     }
 
-    @PostMapping
-    public ResponseEntity registerUsuarios(@RequestBody @Validated RequestUsuario data){
-        Usuario newUsuario
-        System.out.println(data);
-        re
-        return ResponseEntity.ok().build();
-    }
 }
