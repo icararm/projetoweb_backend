@@ -1,5 +1,7 @@
 package com.projetoweb_backend.projetoweb_backend_2.usuario.controller;
 
+import com.projetoweb_backend.projetoweb_backend_2.usuario.dto.UsuarioGetResponseDto;
+import com.projetoweb_backend.projetoweb_backend_2.usuario.dto.UsuarioPostRequestDto;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.entity.Usuario;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.repository.UsuarioRepository;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.service.UsuarioService;
@@ -22,8 +24,18 @@ public class UsuarioController {
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll(){
        return ResponseEntity.status(HttpStatus.OK).
-               body(usuarioService.findAll());
+               body(objectMapperUtil.mapAll(this.usuarioService.findAll(), UsuarioGetResponseDto.class));
     }
+
+    @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE,
+                produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> save(@RequestBody UsuarioPostRequestDto usuarioPostRequestDto){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(objectMapperUtil.map(usuarioService.save(
+                        (objectMapperUtil.map(usuarioPostRequestDto, Usuario.class))), UsuarioGetResponseDto.class));
+    }
+
+
 
 
 }
