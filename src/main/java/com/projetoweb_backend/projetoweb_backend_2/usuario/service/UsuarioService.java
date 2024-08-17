@@ -5,6 +5,7 @@ import com.projetoweb_backend.projetoweb_backend_2.usuario.entity.Usuario;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class UsuarioService {
 
     private UsuarioRepository usuarioRepository;
 
+
     public List<Usuario> findAll(){
         return usuarioRepository.findAll();
     }
@@ -21,6 +23,7 @@ public class UsuarioService {
     public Usuario findById(Long id){
         return usuarioRepository.findById(id).orElseThrow(() -> new BusinessException("Recurso não encontrado"));
     }
+    @Transactional
     public Usuario save(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
