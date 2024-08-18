@@ -8,6 +8,8 @@ import com.projetoweb_backend.projetoweb_backend_2.usuario.service.UsuarioServic
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.mapping.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +26,10 @@ public class UsuarioController {
     private ObjectMapperUtil objectMapperUtil;
 
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findAll(){
+    public ResponseEntity<Page<UsuarioGetResponseDto>> findAll(Pageable pageable){
        return ResponseEntity.status(HttpStatus.OK).
-               body(objectMapperUtil.mapAll(this.usuarioService.findAll(), UsuarioGetResponseDto.class));
+               body(this.usuarioService.findAll(pageable).map( c -> objectMapperUtil.
+                       map(c, UsuarioGetResponseDto.class)));
     }
 
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE,
