@@ -3,17 +3,14 @@ package com.projetoweb_backend.projetoweb_backend_2.usuario.controller;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.dto.UsuarioGetResponseDto;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.dto.UsuarioPostRequestDto;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.entity.Usuario;
-import com.projetoweb_backend.projetoweb_backend_2.usuario.repository.UsuarioRepository;
 import com.projetoweb_backend.projetoweb_backend_2.usuario.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.mapping.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.projetoweb_backend.projetoweb_backend_2.infrastructure.mapper.ObjectMapperUtil;
@@ -40,7 +37,16 @@ public class UsuarioController {
                         (objectMapperUtil.map(usuarioPostRequestDto, Usuario.class))), UsuarioGetResponseDto.class));
     }
 
+    @PutMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> update(@RequestBody Usuario usuario){
+        usuarioService.update(usuario);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
-
-
+    @DeleteMapping(path = "/delete/id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> delete(@PathVariable("id") Long id){
+       usuarioService.delete(id);
+       return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }

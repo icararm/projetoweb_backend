@@ -13,18 +13,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UsuarioService {
+public class UsuarioService implements UsuarioIService {
 
     private UsuarioRepository usuarioRepository;
 
     public Page<Usuario> findAll(Pageable pageable){
         return usuarioRepository.findAll(pageable);
     }
-/*
-    public List<Usuario> findAll(){
-        return usuarioRepository.findAll();
-    }
-*/
+
     public Usuario findById(Long id){
         return usuarioRepository.findById(id).orElseThrow(() -> new BusinessException("Recurso não encontrado"));
     }
@@ -33,6 +29,15 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional
+    public void delete(Long id) {
+        Usuario usuario = findById(id);
+        usuarioRepository.delete(usuario);
+    }
 
+    @Transactional
+    public Usuario update(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
 
 }
