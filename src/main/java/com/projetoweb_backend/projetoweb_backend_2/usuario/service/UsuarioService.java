@@ -15,8 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsuarioService implements UsuarioIService {
 
+    // Declara o repositório usado para operações com a entidade Usuario.
     private UsuarioRepository usuarioRepository;
 
+    // Método para buscar todos os usuários com paginação.
     public Page<Usuario> findAll(Pageable pageable){
         return usuarioRepository.findAll(pageable);
     }
@@ -24,6 +26,13 @@ public class UsuarioService implements UsuarioIService {
     public Usuario findById(Long id){
         return usuarioRepository.findById(id).orElseThrow(() -> new BusinessException("Recurso não encontrado"));
     }
+
+    /*
+     Métodos básicos: salvar, deletar e atualizar
+     Ultilizando o @Transactional
+     Garante que a operação seja executada dentro de uma transação
+     */
+
     @Transactional
     public Usuario save(Usuario usuario){
         return usuarioRepository.save(usuario);

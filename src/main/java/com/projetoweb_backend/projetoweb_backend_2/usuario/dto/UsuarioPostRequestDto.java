@@ -14,6 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UsuarioPostRequestDto {
 
+    /*
+    Para realizar as validaçãoes, colocamos
+    as constraints(anotaçãoes), sobre o atributo
+    anotado
+     */
     @JsonProperty(value = "nome")
     @NotNull(message = "nome é obrigatório!")
     @NotBlank(message = "nome não pode ser vazio!")

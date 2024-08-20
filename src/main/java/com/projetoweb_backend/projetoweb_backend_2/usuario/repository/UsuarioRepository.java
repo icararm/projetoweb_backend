@@ -12,10 +12,8 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    public List<Usuario> findByName();
 
-    public List<Usuario> findByEmail();
-
+    // Define uma consulta personalizada para buscar um usuário pelo campo user_name.
     @Query("select u from Usuario u where u.user_name =?1")
     Optional<Usuario> findByUser_name(String user_name);
 }

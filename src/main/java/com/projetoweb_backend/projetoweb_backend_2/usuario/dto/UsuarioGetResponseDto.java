@@ -8,19 +8,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public record UsuarioGetResponseDto(String name) {
+public class UsuarioGetResponseDto(String name) {
 
     @JsonProperty(value = "nome")
-    private static String nome;
+    /* Especifica o nome da propriedade JSON
+    que será mapeada para o campo 'nome' quando
+     o objeto for convertido para JSON.
+     */
+    private String nome;
 
     @JsonProperty(value = "email")
-    private static String email;
+    private String email;
 
     @JsonProperty(value = "senha")
-    private static String senha;
+    private String senha;
 
     @JsonProperty(value = "user_name")
-    private static String user_name;
-
+    private String user_name;
 
 }

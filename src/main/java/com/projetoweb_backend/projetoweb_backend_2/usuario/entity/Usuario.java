@@ -17,6 +17,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 public class Usuario extends PersistenceEntity implements Serializable {
 
+    // @Column define a coluna do banco de dados que mapeia este campo.
     @Column(name = "nome", nullable = false)
     private String name;
 
