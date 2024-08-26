@@ -6,7 +6,6 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Builder
 public class ErrorResponse {
     private int status;
     private String message;

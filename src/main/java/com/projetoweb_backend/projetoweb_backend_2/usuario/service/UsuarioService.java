@@ -16,7 +16,7 @@ import java.util.List;
 public class UsuarioService implements UsuarioIService {
 
     // Declara o repositório usado para operações com a entidade Usuario.
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     // Método para buscar todos os usuários com paginação.
     public Page<Usuario> findAll(Pageable pageable){

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioGetResponseDto(String name) {
+public class UsuarioGetResponseDto{
 
     @JsonProperty(value = "nome")
     /* Especifica o nome da propriedade JSON

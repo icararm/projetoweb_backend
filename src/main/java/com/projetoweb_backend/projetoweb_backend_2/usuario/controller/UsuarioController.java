@@ -19,7 +19,8 @@ import com.projetoweb_backend.projetoweb_backend_2.infrastructure.mapper.ObjectM
 @RequiredArgsConstructor
 public class UsuarioController {
 
-    private UsuarioService usuarioService;
+
+    private final UsuarioService usuarioService;
     // Utilitário para conversão de objetos entre tipos diferentes
     private ObjectMapperUtil objectMapperUtil;
 
